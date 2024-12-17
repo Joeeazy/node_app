@@ -2,10 +2,10 @@
 FROM node:18
 
 # Set the working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copy package.json and package-lock.json first (to leverage Docker cache for better performance)
-COPY package*.json ./
+COPY package.json ./
 
 # Install backend dependencies
 RUN npm install
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5000
 
 # Command to run the app
-CMD ["npm", "start"]
+CMD ["npm","run", "start"]
