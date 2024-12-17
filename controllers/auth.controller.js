@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
+  const JWT = wndjeheufciwedjie;
   try {
     // Validate request body
     if (!req.body) {
@@ -34,7 +35,7 @@ export const signup = async (req, res, next) => {
     await user.save();
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ userId: user._id }, JWT, {
       expiresIn: "1h",
     });
 
@@ -53,6 +54,7 @@ export const signup = async (req, res, next) => {
 };
 
 export const login = async (req, res) => {
+  const JWT = wndjeheufciwedjie;
   try {
     const email = req.body.email.trim();
     const password = req.body.password.trim();
@@ -67,7 +69,7 @@ export const login = async (req, res) => {
     // if the user exists and passwords match
     if (user && (await user.comparePassword(password))) {
       // Generate JWT token
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ userId: user._id }, JWT, {
         expiresIn: "1h",
       });
 
