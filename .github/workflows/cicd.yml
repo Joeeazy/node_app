@@ -25,4 +25,8 @@ jobs:
       - name: Pull Image from Docker Hub
         run: docker pull mwangi34/node-app:latest
       - name: Run Docker Container
-        run: docker run -d -p 5000:5000 --name nodejs-app-container -e MONGO_URI=${{ secrets.MONGO_URI }} -e JWT_SECRET=${{ secrets.JWT_SECRET }} mwangi34/node-app:latest
+        run: |
+          docker run -d -p 5000:5000 --name nodejs-app-container \ 
+            -e MONGO_URI=${{ secrets.MONGO_URI }} \
+            -e JWT_SECRET=${{ secrets.JWT_SECRET }} \ 
+            mwangi34/node-app:latest
